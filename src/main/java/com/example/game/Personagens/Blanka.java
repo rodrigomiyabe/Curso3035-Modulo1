@@ -10,8 +10,6 @@ public class Blanka extends Fighter {
         super(name, power, life, specialAttack);
     }
 
-    // TODO: 08/05/2023
-    //tirar vida do ataque que o personagem recebeu
     @Override
     public void takeLife(Fighter fighter) {
        if(fighter.getLife() > 0 && fighter.getLife() > this.getPower()){
@@ -23,7 +21,6 @@ public class Blanka extends Fighter {
        }
     }
 
-    //recebe o parametro do ataque
     @Override
     public void normalAttack(Fighter fighter) {
         this.setPower(this.getPower());
@@ -33,4 +30,5 @@ public class Blanka extends Fighter {
     public void specialAttack(Fighter fighter) {
         this.setPower(this.getSpecialAttack().getValueSpecial());
     }
+
 }

@@ -15,14 +15,31 @@ public class Game {
 
         while (p1.getCharacter().getLife() > 0 || p2.getCharacter().getLife() > 0){
             if(p2.getCharacter().getLife() > p1.getCharacter().getPower() && p1.getCharacter().getLife() > p2.getCharacter().getPower()) {
-                p1.getCharacter().takeLife(p2.getCharacter());
-                System.out.println( " p2 vida: " + p2.getCharacter().getLife());
-                p2.getCharacter().takeLife(p1.getCharacter());
-                System.out.println(" p1 vida " + p1.getCharacter().getLife());
-            } else if (p2.getCharacter().getLife() < p1.getCharacter().getPower()) {
+                int number = 0;
+                if(number == getRandomNumber(1,10)){
+                    p2.getCharacter().setLife(p2.getCharacter().getLife() - p1.getCharacter().getSpecialAttack().getValueSpecial());
+                    System.out.println( " p2 vida: " + p2.getCharacter().getLife());
+                    number ++;
+                }
+                else {
+                    p1.getCharacter().takeLife(p2.getCharacter());
+                    System.out.println( " p2 vida: " + p2.getCharacter().getLife());
+                    number ++;
+                }
+
+                if(number == getRandomNumber(1,10)){
+                    p1.getCharacter().setLife(p1.getCharacter().getLife() - p2.getCharacter().getSpecialAttack().getValueSpecial());
+                    System.out.println(" p1 vida " + p1.getCharacter().getLife());
+
+                }else {
+                    p2.getCharacter().takeLife(p1.getCharacter());
+                    System.out.println(" p1 vida " + p1.getCharacter().getLife());
+                }
+
+            }
+            else if (p2.getCharacter().getLife() < p1.getCharacter().getPower()) {
                 System.out.println(p2.getCharacter());
                 p2.getCharacter().setLife(0.0);
-
                 break;
             }
             else {
@@ -39,6 +56,10 @@ public class Game {
             System.out.println("Winner: " + p1.getName() + " Loser: " + p2.getName() + ". " + p1.getCharacter().getName() +" ganhou de " + p2.getCharacter().getName() + ". Vida restante: " + p1.getCharacter().getLife() );
             return p1;
         }
+    }
+
+    public static int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 
 }
